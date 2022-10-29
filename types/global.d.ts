@@ -170,6 +170,12 @@ declare namespace API {
         setId?: number;
         iconIdx?: number;
     };
+
+    export type Event = {
+        id: number;
+        title: string;
+        start: string;
+    };
 }
 
 interface ShowOptions {
