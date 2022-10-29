@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
-import { IMenuContext, ILayoutProps } from '../../types/global';
+import { Context, ILayoutProps } from '../../types/global';
 
-export const MenuContext = createContext({} as IMenuContext);
+export const MenuContext = createContext({} as Context.MenuContext);
 
 export const MenuProvider = ({ children }: ILayoutProps) => {
     const [activeMenu, setActiveMenu] = useState('');

@@ -11,7 +11,7 @@ import AppTopbar from './AppTopbar';
 import AppConfig from './AppConfig';
 import { LayoutContext } from './context/layoutcontext';
 import PrimeReact from 'primereact/api';
-import { ILayoutProps, ILayoutState, IAppTopbarRef } from '../types/global';
+import { ILayoutProps, LayoutState, IAppTopbarRef } from '../types/global';
 
 const Layout = ({ children }: ILayoutProps) => {
     const { layoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
@@ -52,13 +52,13 @@ const Layout = ({ children }: ILayoutProps) => {
     });
 
     const hideMenu = () => {
-        setLayoutState((prevLayoutState: ILayoutState) => ({ ...prevLayoutState, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
+        setLayoutState((prevLayoutState: LayoutState) => ({ ...prevLayoutState, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
         unbindMenuOutsideClickListener();
         unblockBodyScroll();
     };
 
     const hideProfileMenu = () => {
-        setLayoutState((prevLayoutState: ILayoutState) => ({ ...prevLayoutState, profileSidebarVisible: false }));
+        setLayoutState((prevLayoutState: LayoutState) => ({ ...prevLayoutState, profileSidebarVisible: false }));
         unbindProfileMenuOutsideClickListener();
     };
 

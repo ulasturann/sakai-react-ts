@@ -8,7 +8,7 @@ import { RadioButton, RadioButtonChangeParams } from 'primereact/radiobutton';
 import { Sidebar } from 'primereact/sidebar';
 import { classNames } from 'primereact/utils';
 import React, { useContext, useEffect, useState } from 'react';
-import { IAppConfigProps, ILayoutConfig, ILayoutState } from '../types/global';
+import { IAppConfigProps, LayoutConfig, LayoutState } from '../types/global';
 import { LayoutContext } from './context/layoutcontext';
 
 const AppConfig = (props: IAppConfigProps) => {
@@ -17,24 +17,24 @@ const AppConfig = (props: IAppConfigProps) => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const onConfigButtonClick = () => {
-        setLayoutState((prevState: ILayoutState) => ({ ...prevState, configSidebarVisible: true }));
+        setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: true }));
     };
 
     const onConfigSidebarHide = () => {
-        setLayoutState((prevState: ILayoutState) => ({ ...prevState, configSidebarVisible: false }));
+        setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: false }));
     };
 
     const changeInputStyle = (e: RadioButtonChangeParams) => {
-        setLayoutConfig((prevState: ILayoutState) => ({ ...prevState, inputStyle: e.value }));
+        setLayoutConfig((prevState: LayoutState) => ({ ...prevState, inputStyle: e.value }));
     };
 
     const changeRipple = (e: InputSwitchChangeParams) => {
         PrimeReact.ripple = e.value;
-        setLayoutConfig((prevState: ILayoutState) => ({ ...prevState, ripple: e.value }));
+        setLayoutConfig((prevState: LayoutState) => ({ ...prevState, ripple: e.value }));
     };
 
     const changeMenuMode = (e: RadioButtonChangeParams) => {
-        setLayoutConfig((prevState: ILayoutState) => ({ ...prevState, menuMode: e.value }));
+        setLayoutConfig((prevState: LayoutState) => ({ ...prevState, menuMode: e.value }));
     };
 
     const changeTheme = (theme: string, colorScheme: string) => {
@@ -43,7 +43,7 @@ const AppConfig = (props: IAppConfigProps) => {
         const newHref = themeHref ? themeHref.replace(layoutConfig.theme, theme) : null;
 
         replaceLink(themeLink, newHref, () => {
-            setLayoutConfig((prevState: ILayoutConfig) => ({ ...prevState, theme, colorScheme }));
+            setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, theme, colorScheme }));
         });
     };
 
@@ -72,11 +72,11 @@ const AppConfig = (props: IAppConfigProps) => {
     };
 
     const decrementScale = () => {
-        setLayoutConfig((prevState: ILayoutConfig) => ({ ...prevState, scale: prevState.scale - 1 }));
+        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, scale: prevState.scale - 1 }));
     };
 
     const incrementScale = () => {
-        setLayoutConfig((prevState: ILayoutConfig) => ({ ...prevState, scale: prevState.scale + 1 }));
+        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, scale: prevState.scale + 1 }));
     };
 
     const applyScale = () => {

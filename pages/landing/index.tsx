@@ -9,7 +9,7 @@ import { Ripple } from 'primereact/ripple';
 import { Divider } from 'primereact/divider';
 import AppConfig from '../../layout/AppConfig';
 import { LayoutContext } from '../../layout/context/layoutcontext';
-import { INodeRef, Page } from '../../types/global';
+import { NodeRef, Page } from '../../types/global';
 
 const LandingPage: Page = () => {
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
@@ -26,7 +26,7 @@ const LandingPage: Page = () => {
                             <span className="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
                         </a>
                     </Link>
-                    <StyleClass nodeRef={menuRef as INodeRef} selector="@next" enterClassName="hidden" leaveToClassName="hidden" hideOnOutsideClick>
+                    <StyleClass nodeRef={menuRef as NodeRef} selector="@next" enterClassName="hidden" leaveToClassName="hidden" hideOnOutsideClick>
                         <i ref={menuRef} className="pi pi-bars text-4xl cursor-pointer block lg:hidden text-700"></i>
                     </StyleClass>
                     <div className="align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2" style={{ top: '100%' }}>

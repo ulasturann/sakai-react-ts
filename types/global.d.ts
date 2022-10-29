@@ -11,7 +11,7 @@ export interface ILayoutProps {
     children: React.ReactNode;
 }
 
-export interface ILayoutState {
+export interface LayoutState {
     staticMenuDesktopInactive: boolean;
     overlayMenuActive: boolean;
     profileSidebarVisible: boolean;
@@ -20,7 +20,7 @@ export interface ILayoutState {
     menuHoverActive: boolean;
 }
 
-export interface ILayoutConfig {
+export interface LayoutConfig {
     ripple: boolean;
     inputStyle: string;
     menuMode: string;
@@ -28,24 +28,26 @@ export interface ILayoutConfig {
     theme: string;
     scale: number;
 }
-export interface IMenuContext {
-    activeMenu: string;
-    setActiveMenu: Dispatch<SetStateAction<string>>;
-}
-export interface ILayoutContext {
-    layoutConfig: ILayoutConfig;
-    setLayoutConfig: Dispatch<SetStateAction<ILayoutConfig>>;
-    layoutState: ILayoutState;
-    setLayoutState: Dispatch<SetStateAction<ILayoutState>>;
-    onMenuToggle: () => void;
-    showProfileSidebar: () => void;
+declare namespace Context {
+    export interface LayoutContext {
+        layoutConfig: LayoutConfig;
+        setLayoutConfig: Dispatch<SetStateAction<LayoutConfig>>;
+        layoutState: LayoutState;
+        setLayoutState: Dispatch<SetStateAction<LayoutState>>;
+        onMenuToggle: () => void;
+        showProfileSidebar: () => void;
+    }
+    export interface MenuContext {
+        activeMenu: string;
+        setActiveMenu: Dispatch<SetStateAction<string>>;
+    }
 }
 
 export interface IAppConfigProps {
     simple?: boolean;
 }
 export interface IAppMenuItemProps {
-    item?: IMenuModelItem;
+    item?: MenuModelItem;
     parentKey?: string;
     index?: number;
     root?: boolean;
@@ -59,9 +61,9 @@ enum IndexAxis {
 
 interface ICommandProps {
     originalEvent: React.MouseEvent<HTMLAnchorElement, MouseEvent>;
-    item: IMenuModelItem;
+    item: MenuModelItem;
 }
-export interface IMenuModelItem {
+export interface MenuModelItem {
     label: string;
     icon?: string;
     to?: string;
@@ -76,10 +78,10 @@ export interface IMenuModelItem {
     disabled?: boolean;
     replaceUrl?: boolean;
     command?: ({ originalEvent, item }: ICommandProps) => void;
-    items?: IMenuModelItem[];
+    items?: MenuModelItem[];
 }
 
-export type INodeRef = MutableRefObject<ReactNode>;
+export type NodeRef = MutableRefObject<ReactNode>;
 export interface IAppTopbarRef {
     menubutton?: HTMLButtonElement | null;
     topbarmenu?: HTMLDivElement | null;
@@ -204,11 +206,6 @@ export interface ChartOptionsState {
 type InventoryStatus = 'INSTOCK' | 'LOWSTOCK' | 'OUTOFSTOCK';
 
 type Status = 'DELIVERED' | 'PENDING' | 'RETURNED' | 'CANCELLED';
-
-/* ProductService */
-export interface IProductService {
-    contextPath: any;
-}
 
 export type LayoutType = 'list' | 'grid';
 export type SortOrderType = 1 | 0 | -1;

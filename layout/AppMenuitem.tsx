@@ -5,7 +5,7 @@ import { classNames } from 'primereact/utils';
 import React, { useEffect, useContext } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { MenuContext } from './context/menucontext';
-import { IAppMenuItemProps, IMenuModelItem } from '../types/global';
+import { IAppMenuItemProps, MenuModelItem } from '../types/global';
 
 const AppMenuitem = (props: IAppMenuItemProps) => {
     const { activeMenu, setActiveMenu } = useContext(MenuContext);
@@ -42,7 +42,7 @@ const AppMenuitem = (props: IAppMenuItemProps) => {
 
         //execute command
         if (item!.command) {
-            item!.command({ originalEvent: event, item: item as IMenuModelItem });
+            item!.command({ originalEvent: event, item: item as MenuModelItem });
         }
 
         // toggle active state

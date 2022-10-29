@@ -1,9 +1,9 @@
 import React, { useState, createContext } from 'react';
-import { ILayoutState, ILayoutProps, ILayoutContext, ILayoutConfig } from '../../types/global';
-export const LayoutContext = createContext({} as ILayoutContext);
+import { LayoutState, ILayoutProps, Context, LayoutConfig } from '../../types/global';
+export const LayoutContext = createContext({} as Context.LayoutContext);
 
 export const LayoutProvider = ({ children }: ILayoutProps) => {
-    const [layoutConfig, setLayoutConfig] = useState<ILayoutConfig>({
+    const [layoutConfig, setLayoutConfig] = useState<LayoutConfig>({
         ripple: false,
         inputStyle: 'outlined',
         menuMode: 'static',
@@ -12,7 +12,7 @@ export const LayoutProvider = ({ children }: ILayoutProps) => {
         scale: 14
     });
 
-    const [layoutState, setLayoutState] = useState<ILayoutState>({
+    const [layoutState, setLayoutState] = useState<LayoutState>({
         staticMenuDesktopInactive: false,
         overlayMenuActive: false,
         profileSidebarVisible: false,
@@ -45,7 +45,7 @@ export const LayoutProvider = ({ children }: ILayoutProps) => {
         return window.innerWidth > 991;
     };
 
-    const value: ILayoutContext = {
+    const value: Context.LayoutContext = {
         layoutConfig,
         setLayoutConfig,
         layoutState,
