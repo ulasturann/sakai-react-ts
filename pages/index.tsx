@@ -1,15 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 import getConfig from 'next/config';
 import { Button } from 'primereact/button';
 import { Chart } from 'primereact/chart';
-import { Column } from 'primereact/column';
+import { Column, ColumnBodyType } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Menu } from 'primereact/menu';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ProductService } from '../demo/service/ProductService';
 import { LayoutContext } from '../layout/context/layoutcontext';
 import Link from 'next/link';
-import { ILineOptionsProps, IMenuRef } from '../types/global';
-const lineData = {
+import { API } from '../types/global';
+import { ChartData, ChartOptions } from 'chart.js';
+
+const lineData: ChartData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
@@ -32,15 +35,15 @@ const lineData = {
 };
 
 const Dashboard = () => {
-    const [products, setProducts] = useState<any[] | undefined>(undefined);
-    const menu1 = useRef<IMenuRef>(null);
-    const menu2 = useRef<IMenuRef>(null);
-    const [lineOptions, setLineOptions] = useState<ILineOptionsProps<{}> | undefined>(undefined);
+    const [products, setProducts] = useState<API.Product[]>([]);
+    const menu1 = useRef<Menu>(null);
+    const menu2 = useRef<Menu>(null);
+    const [lineOptions, setLineOptions] = useState<ChartOptions>({});
     const { layoutConfig } = useContext(LayoutContext);
     const contextPath = getConfig().publicRuntimeConfig.contextPath;
 
     const applyLightTheme = () => {
-        const lineOptions: ILineOptionsProps<{}> = {
+        const lineOptions: ChartOptions = {
             plugins: {
                 legend: {
                     labels: {
@@ -116,8 +119,8 @@ const Dashboard = () => {
         }
     }, [layoutConfig.colorScheme]);
 
-    const formatCurrency = (value: any) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    const formatCurrency = (value: ColumnBodyType) => {
+        return value?.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 
     return (
@@ -303,7 +306,7 @@ const Dashboard = () => {
                     <div className="flex align-items-center justify-content-between mb-4">
                         <h5>Notifications</h5>
                         <div>
-                            <Button type="button" icon="pi pi-ellipsis-v" className="p-button-rounded p-button-text p-button-plain" onClick={(event) => menu2.current.toggle(event)} />
+                            <Button type="button" icon="pi pi-ellipsis-v" className="p-button-rounded p-button-text p-button-plain" onClick={(event) => menu2.current?.toggle(event)} />
                             <Menu
                                 ref={menu2}
                                 popup

@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import type { Page } from '../types/page';
+import type { Page } from '../types/global';
 import React from 'react';
 import { LayoutProvider } from '../layout/context/layoutcontext';
 import Layout from '../layout/layout';
